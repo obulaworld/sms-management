@@ -1,23 +1,25 @@
-{
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+const env = require('./environment.js');
+
+const defaultConfig = {
+  databaseUrl: env.DATABASE_URL,
+  dialect: env.DATABASE_DIALECT || 'postgres',
+  use_env_variable: 'DATABASE_URL',
+};
+
+const database = {
+  development: {
+    ...defaultConfig,
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+  test: {
+    ...defaultConfig,
   },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
-}
+  staging: {
+    ...defaultConfig,
+  },
+  production: {
+    ...defaultConfig,
+  },
+};
+
+// DO NOT CHANGE EVER!!!
+module.exports = database;
