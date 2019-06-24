@@ -1,0 +1,53 @@
+{
+		"name": "sms-management",
+		"version": "1.0.0",
+		"description": "",
+		"main": "index.js",
+		"scripts": {
+				"test": "npm run db:rollback && npm run db:migrate && NODE_ENV=test nyc mocha ./src/__tests__ --recursive --require @babel/register --exit",
+				"start": "node ./src/index.js",
+				"server": "nodemon --exec babel-node ./src/index.js",
+				"db:migrate": "node_modules/.bin/sequelize db:migrate",
+				"db:rollback": "node_modules/.bin/sequelize db:migrate:undo:all"
+		},
+		"dependencies": {
+				"@babel/cli": "^7.4.3",
+				"@babel/core": "^7.4.3",
+				"@babel/preset-env": "^7.4.3",
+				"bcrypt": "^3.0.6",
+				"body-parser": "^1.18.3",
+				"cors": "^2.8.5",
+				"dotenv": "^7.0.0",
+				"express": "^4.16.4",
+				"jsonwebtoken": "^8.5.1",
+				"pg": "^7.4.3",
+				"request": "^2.87.0",
+				"swagger-ui-express": "^3.0.10",
+				"yamljs": "^0.3.0",
+				"sequelize": "^4.39.0"
+		},
+		"devDependencies": {
+				"@babel/node": "^7.2.2",
+				"@babel/register": "^7.4.0",
+				"chai": "^4.2.0",
+				"chai-http": "^4.2.1",
+				"eslint": "^5.16.0",
+				"eslint-config-airbnb-base": "^13.1.0",
+				"eslint-plugin-import": "^2.17.2",
+				"mocha": "^6.1.4",
+				"nodemon": "^1.18.11",
+				"nyc": "^14.0.0",
+				"sequelize-cli": "^4.1.1"
+		},
+		"repository": {
+				"type": "git",
+				"url": "git+https://github.com/obulaworld/sms-management.git"
+		},
+		"keywords": [],
+		"author": "",
+		"license": "ISC",
+		"bugs": {
+				"url": "https://github.com/obulaworld/sms-management/issues"
+		},
+		"homepage": "https://github.com/obulaworld/sms-management#readme"
+}
