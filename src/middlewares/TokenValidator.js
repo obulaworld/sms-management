@@ -4,6 +4,14 @@ import jwt from 'jsonwebtoken';
 
 const auth = {
 
+  /**
+     * Signs user's object to a token
+     *
+     * @static
+     * @param  {object} user - user object
+     * @returns {object} response object
+     * @memberof auth     *
+     */
   authenticate(user) {
     return jwt.sign({
       id: user.id,
@@ -13,6 +21,14 @@ const auth = {
     });
   },
 
+  /**
+     * Verifies user's token
+     *
+     * @static
+     * @param  {string} token - token string
+     * @returns {object} response object
+     * @memberof auth     *
+     */
   verifyToken(token) {
     let decoded = {};
     try {
@@ -25,6 +41,17 @@ const auth = {
     return decoded;
   },
 
+
+/**
+     * Verifies the user object token
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @param  {object} next - next object
+     * @returns {object} response object
+     * @memberof auth     *
+     */
   verifyUserToken(request, response, next) {
     const token = request.query.token || request.body.token || request.headers['x-access-token'];
     if (!token) {

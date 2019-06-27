@@ -3,11 +3,35 @@ import CustomError from '../../helpers/Error';
 import bcrypt from 'bcrypt';
 import auth from '../../middlewares/TokenValidator';
 
+/**
+ * Handles operations on contact routes
+ *
+ * @exports
+ * @class ContactController
+ */
 export default class ContactController {
+   /**
+     * The home route
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {String} response string
+     * @memberof ContactController     *
+     */
   static home(req, res) {
     res.status(200).send('Welcome to SMS Management Application API');
   }
 
+   /**
+     * Creates a user
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof ContactController     *
+     */
   static async createUser(req, res) {
     try {
       const { name, password, phoneNumber } = req.body;
@@ -50,6 +74,15 @@ export default class ContactController {
     }
   }
 
+   /**
+     * Logs in a user
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof ContactController     *
+     */
   static async loginUser(req, res) {
     try {
       const { password, phoneNumber } = req.body;
@@ -84,6 +117,15 @@ export default class ContactController {
     }
   }
 
+   /**
+     * Deletes a user
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof ContactController     *
+     */
   static async deleteUser(req, res) {
     try {
         const { contactId } = req.params;
@@ -108,6 +150,16 @@ export default class ContactController {
       CustomError.handleError(error.message, 500, res);
     }
 }
+
+ /**
+     * Gets a user
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof ContactController     *
+     */
 
 static async getUser(req, res) {
   try {
