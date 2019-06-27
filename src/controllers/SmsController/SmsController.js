@@ -20,12 +20,12 @@ export default class SmsController {
      */
   static async sendMessage(req, res) {
     try {
-      const { receiverId } = req.params;
+      const { phoneNumber } = req.params;
       const { message } = req.body;
       const { id } = req.user;
 
         const foundReceiver = await models.Contact.findOne({
-          where: { id: receiverId }
+          where: { phone_number: phoneNumber }
         });
 
         if(!foundReceiver){
@@ -36,7 +36,7 @@ export default class SmsController {
         const createdMessage = await models.SMS.create({
             sender_id: id,
             message,
-            receiver_id: receiverId,
+            receiver_id: foundReceiver.id,
             status: 1
         });
 

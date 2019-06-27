@@ -11,25 +11,25 @@ contactRouter.get(
 );
 
 contactRouter.post(
-  '/contact/signup',
+  '/contacts/signup',
   ContactValidator.checkContactFields,
   ContactController.createUser,
 );
 
 contactRouter.post(
-  '/contact/login',
+  '/contacts/login',
   ContactValidator.checkLoginFields,
   ContactController.loginUser,
 );
 
 contactRouter.delete(
-  '/contact/delete/:contactId',
+  '/contacts/delete/:contactId',
   ContactValidator.checkParam,
   ContactController.deleteUser,
 );
 
 contactRouter.get(
-  '/contact/:contactId',
+  '/contacts/:contactId',
   auth.verifyUserToken,
   ContactValidator.checkParam,
   ContactController.getUser,
