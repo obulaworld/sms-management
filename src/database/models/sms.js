@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
   SMS.associate = function(models) {
     // associations can be defined here
     SMS.belongsTo(models.Contact, {
-      as: 'Contacts',
+      as: 'Sender',
       foreignKey: 'sender_id',
       onDelete: 'CASCADE'
     });
 
     SMS.belongsTo(models.Contact, {
-      as: 'Contacts',
+      as: 'Receiver',
       foreignKey: 'receiver_id',
     });
   };
