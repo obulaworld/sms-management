@@ -1,11 +1,23 @@
 import models from '../../database/models';
 import CustomError from '../../helpers/Error';
 
+/**
+ * Handles operations on sms routes
+ *
+ * @exports
+ * @class SmsController
+ */
 export default class SmsController {
-  static home(req, res) {
-    res.status(200).send('Welcome to SMS Management Application API');
-  }
 
+  /**
+     * Creats a message
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof SmsController     *
+     */
   static async sendMessage(req, res) {
     try {
       const { receiverId } = req.params;
@@ -40,6 +52,16 @@ export default class SmsController {
     }
   }
 
+  /**
+     * Gets a user's sent messages
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof SmsController     *
+     */
+
   static async getSentMessages(req, res) {
     try {
       const { id } = req.user;
@@ -61,6 +83,15 @@ export default class SmsController {
     }
 }
 
+/**
+     * Gets a user's received messages
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof SmsController     *
+     */
   static async getReceivedMessages(req, res) {
     try {
       const { id } = req.user;
@@ -81,6 +112,16 @@ export default class SmsController {
       CustomError.handleError(error.message, 500, res);
     }
   }
+
+  /**
+     * Gets a particular user's message
+     *
+     * @static
+     * @param  {object} req - request object
+     * @param  {object} res - response object
+     * @returns {object} response object
+     * @memberof SmsController     *
+     */
 
   static async getMessage(req, res) {
     try {
