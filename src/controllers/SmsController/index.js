@@ -25,9 +25,8 @@ SmsRouter.get(
 );
 
 SmsRouter.post(
-  '/messages/:receiverId',
+  '/messages/:phoneNumber',
   auth.verifyUserToken,
-  SmsValidator.checkReceiver,
   SmsValidator.checkMessageFields,
   SmsController.sendMessage
 );
